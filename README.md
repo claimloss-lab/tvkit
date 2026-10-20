@@ -271,6 +271,10 @@ Zero dependencies, and the file can be reviewed in a PR without a parser.
 See [CONTRIBUTING.md](CONTRIBUTING.md). The most valuable contribution is a **profile plus a
 `tvkit audit` report** from a device nobody has covered yet.
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md). Release process: [docs/RELEASING.md](docs/RELEASING.md).
+
 ## License
 
 MIT. `tvkit` is an independent implementation; it was inspired by the idea of scripted
