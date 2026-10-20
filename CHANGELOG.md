@@ -6,7 +6,14 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-Nothing yet. Candidate ideas are tracked in the issue tracker.
+### Added
+
+- `CONTRIBUTORS.md` — credit tables for device reports, bug reports and code, plus
+  acknowledgements (tv-vibehack, adb-shell, the `pm disable-user` forum crowd).
+- `CONTRIBUTING.md` now explains how to get credited and requires a `## [Unreleased]`
+  changelog entry for every user-visible change; README links both files.
+
+No behaviour change in this section yet — the next profile or bug fix lands here.
 
 ## [0.1.0] — 2026-10-20
 

@@ -268,12 +268,13 @@ Zero dependencies, and the file can be reviewed in a PR without a parser.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). The most valuable contribution is a **profile plus a
+See [CONTRIBUTING.md](CONTRIBUTING.md); credits live in [CONTRIBUTORS.md](CONTRIBUTORS.md). The most valuable contribution is a **profile plus a
 `tvkit audit` report** from a device nobody has covered yet.
 
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md). Release process: [docs/RELEASING.md](docs/RELEASING.md).
+See [CHANGELOG.md](CHANGELOG.md) for what changed, and [CONTRIBUTORS.md](CONTRIBUTORS.md) for who made it.
+Release process: [docs/RELEASING.md](docs/RELEASING.md).
 
 ## License
 

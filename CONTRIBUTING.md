@@ -63,6 +63,21 @@ CI runs the same three commands on Linux, macOS and Windows.
 
 7. Open the PR with the audit report (redact MAC/IP if you care) and the numbers.
 
+## Get credited
+
+Add yourself to [CONTRIBUTORS.md](CONTRIBUTORS.md) in the same PR:
+
+* a profile + audit report → *Device reports* table (name, model, handle)
+* a bug report that led to a fix → *Bug reports*
+* code, docs or tests → *Code and docs*
+
+## Changelog entries
+
+Every user-visible change needs a line under `## [Unreleased]` in
+[CHANGELOG.md](CHANGELOG.md), in the right bucket (`Added` / `Changed` / `Fixed` /
+`Security`). Profile changes count as user-visible — say which packages moved and why.
+Internal refactors with no behaviour change do not need an entry.
+
 ## Rules of the road
 
 * **Never** add a package to a profile that you have not seen actually exist on that device.
