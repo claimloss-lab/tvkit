@@ -247,6 +247,32 @@ def cmd_restore(args) -> int:
     return 0 if ok == len(steps) else 3
 
 
+def cmd_screenshot(args) -> int:
+    """Capture the screen (before/after evidence, great for issue reports)."""
+    import re
+    import time
+
+    dev = _connect(args)
+    try:
+        snap = take(dev, include_packages=False)
+        stamp = time.strftime("%Y%m%d-%H%M%S")
+        slug = re.sub(r"[^a-z0-9]+", "-", snap.label.lower()).strip("-") or "tv"
+        out_dir = Path(args.out or ".").expanduser()
+        out_dir.mkdir(parents=True, exist_ok=True)
+        local = out_dir / f"{slug}-{stamp}.png"
+        remote = f"/sdcard/tvkit-{stamp}.png"
+        res = dev.shell(f"screencap -p {remote}").strip()
+        if "error" in res.lower() or "failed" in res.lower():
+            print(f"capture failed: {res}", file=sys.stderr)
+            return 3
+        dev.pull(remote, str(local))
+        dev.shell(f"rm -f {remote}")
+    finally:
+        dev.close()
+    print(f"{local}  ({snap.label} · {snap.resolution})")
+    return 0
+
+
 def cmd_devices(args) -> int:
     devices = registry.load()
     if args.json:
@@ -355,6 +381,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_restore.add_argument("--animations", action="store_true", help="reset animation scales to 1.0")
     p_restore.add_argument("--bluetooth", action="store_true", help="turn Bluetooth back on")
     p_restore.set_defaults(func=cmd_restore)
+
+    p_shot = sub.add_parser("screenshot", help="save a PNG of the current screen (evidence)")
+    add_host(p_shot)
+    p_shot.add_argument("--out", help="directory to save into (default: current dir)")
+    p_shot.set_defaults(func=cmd_screenshot)
 
     p_devices = sub.add_parser("devices", help="list the local device registry")
     p_devices.add_argument("--json", action="store_true")

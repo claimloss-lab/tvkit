@@ -149,3 +149,26 @@ class RegistryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ScreenshotCommand(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp(prefix="tvkit-shot-")
+        self.env = mock.patch.dict(os.environ, {"TVKIT_HOME": self.tmp}, clear=False)
+        self.env.start()
+        self.device = _fake_android_tv()
+        self.patch = mock.patch.object(cli, "_connect", lambda args: self.device)
+        self.patch.start()
+
+    def tearDown(self):
+        self.patch.stop()
+        self.env.stop()
+
+    def test_screenshot_saves_png(self):
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            code = cli.main(["screenshot", "--host", "10.0.0.9", "--out", self.tmp])
+        self.assertEqual(code, 0, buf.getvalue())
+        files = list(Path(self.tmp).glob("*.png"))
+        self.assertEqual(len(files), 1)
+        self.assertTrue(files[0].read_bytes().startswith(b"\x89PNG"))

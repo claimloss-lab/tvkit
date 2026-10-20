@@ -193,6 +193,7 @@ Please include `verified_on` so the next person knows how far to trust it.
 | `plan` | dry run: what would be disabled / skipped / warned |
 | `apply` | disable with verification + auto-rollback (`--dry-run`, `--only`, `--yes`) |
 | `restore` | `--last`, `--journal`, `--package`, `--stock-home`, `--animations`, `--bluetooth` |
+| `screenshot` | save a PNG of the screen — use it for a *before* shot before your first apply |
 | `devices` | local registry (MAC-keyed, survives DHCP) |
 | `profiles` | list + lint profile files |
 | `selftest` | 27 offline checks against a simulated TV — no device needed |

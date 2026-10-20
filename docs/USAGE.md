@@ -95,6 +95,15 @@ Workflow that keeps you out of trouble:
 Each run prints a before/after table and writes a journal. If anything fails, the affected
 packages are re-enabled automatically and the exit code is `3`.
 
+## 4.1 Take a screenshot before you start
+
+```bash
+tvkit screenshot --host 192.168.1.50 --out ./evidence     # saves toshiba-tt-fitness-tv-<ts>.png
+```
+
+Use it for a **before** picture, then again after `apply`. Photos of “before: ads everywhere /
+after: clean dock” are the easiest proof when you file an issue or show someone what changed.
+
 ## 5. Restore
 
 ```bash

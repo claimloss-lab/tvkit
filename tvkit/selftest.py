@@ -84,6 +84,9 @@ class FakeDevice:
     def getprop(self, name: str) -> str:
         return self.shell(f"getprop {name}").strip()
 
+    def pull(self, remote: str, local: str, timeout: float = 300.0) -> None:
+        Path(local).write_bytes(b"\x89PNG\r\n\x1a\n" + b"fake-png")
+
     @property
     def home(self) -> str:
         for pkg in ("com.gathin.tvhome", "com.google.android.tvlauncher"):
