@@ -28,8 +28,8 @@ dependencies = [
 dev = ["pytest>=7", "ruff"]
 
 [project.urls]
-Homepage = "https://github.com/OWNER/tvkit"
-Issues = "https://github.com/OWNER/tvkit/issues"
+Homepage = "https://github.com/claimloss-lab/tvkit"
+Issues = "https://github.com/claimloss-lab/tvkit/issues"
 
 [project.scripts]
 tvkit = "tvkit.cli:main"

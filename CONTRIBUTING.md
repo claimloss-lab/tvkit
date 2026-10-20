@@ -6,7 +6,7 @@ nobody has covered**, plus the audit report that proves it works.
 ## Development setup
 
 ```bash
-git clone https://github.com/OWNER/tvkit
+git clone https://github.com/claimloss-lab/tvkit
 cd tvkit
 python -m venv .venv
 # Windows: .venv\Scripts\activate   |   macOS/Linux: source .venv/bin/activate
