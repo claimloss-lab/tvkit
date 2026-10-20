@@ -25,3 +25,10 @@ audit*.md
 .idea/
 .DS_Store
 Thumbs.db
+
+# local scratch
+*.log
+o*.txt
+e*.txt
+out.txt
+err.txt

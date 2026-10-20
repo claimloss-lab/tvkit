@@ -1,5 +1,4 @@
 import unittest
-from pathlib import Path
 
 from tvkit import safety
 from tvkit.apply import make_plan, restore_packages

@@ -7,7 +7,7 @@ GitHub issue or a Discord message.
 from __future__ import annotations
 
 import json
-from typing import List, Optional
+from typing import List
 
 from .apply import Plan, Result
 from .snapshot import Snapshot, compare
@@ -68,7 +68,7 @@ def profile_report(snap: Snapshot, profile, problems: List[str]) -> str:
             continue
         out.append(f"**{tier}** ({len(packages)})")
         for pkg in packages:
-            mark = "✅" if pkg in snap.packages_enabled else ("⏸ already off" if pkg in snap.packages_disabled else "— not installed")
+            mark = "enabled" if pkg in snap.packages_enabled else ("already off" if pkg in snap.packages_disabled else "not installed")
             out.append(f"- `{pkg}` {mark}")
         out.append("")
     if problems:
@@ -96,10 +96,10 @@ def plan_report(plan: Plan) -> str:
 
 
 def result_report(result: Result) -> str:
-    out = [f"### Result — {'OK ✅' if result.ok else 'ROLLED BACK ❌'}", ""]
+    out = [f"### Result - {'OK' if result.ok else 'ROLLED BACK'}", ""]
     out.append(f"Disabled: {len(result.applied)} · rolled back: {len(result.rolled_back)}")
     if result.before and result.after:
-        out += ["", "| Metric | Before | After | Δ |", "|---|---|---|---|"]
+        out += ["", "| Metric | Before | After | Change |", "|---|---|---|---|"]
         for metric, before, after, delta in compare(result.before, result.after):
             out.append(f"| {metric} | {before} | {after} | {delta} |")
     if result.failures:

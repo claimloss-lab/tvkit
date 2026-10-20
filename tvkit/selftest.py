@@ -6,13 +6,10 @@ Android TV defined below, so `python -m tvkit selftest` works on any machine.
 
 from __future__ import annotations
 
-import io
-import sys
-from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List
 
-from . import profiles as profiles_mod
+from . import console, profiles as profiles_mod
 from . import safety
 from .apply import make_plan
 from .discover import expand_targets
@@ -236,10 +233,13 @@ def run(verbose: bool = True) -> int:
 
     failed = [c for c in CHECKS if c[0] == "FAIL"]
     if verbose:
+        console.install()
         for status, name, detail in CHECKS:
-            mark = "✅" if status == "PASS" else "❌"
-            print(f"{mark} {name}" + (f"  ({detail})" if detail and status == "FAIL" else ""))
-        print(f"\n{len(CHECKS) - len(failed)}/{len(CHECKS)} checks passed")
+            mark = console.sym("✅", "[ok]") if status == "PASS" else console.sym("❌", "[x]")
+            extra = f"  ({detail})" if detail and status == "FAIL" else ""
+            console.write(f"{mark} {name}{extra}")
+        print("")
+        print("{}/{} checks passed".format(len(CHECKS) - len(failed), len(CHECKS)))
     return 0 if not failed else 1
 
 

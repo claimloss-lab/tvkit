@@ -1,6 +1,5 @@
 import json
 import unittest
-from pathlib import Path
 
 from tvkit import profiles as P
 from tvkit import safety

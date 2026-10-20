@@ -42,6 +42,12 @@ tvkit = ["profiles/*.json"]
 
 [tool.ruff]
 line-length = 110
+target-version = "py39"
+
+[tool.ruff.lint]
+# Deliberately small: syntax errors, undefined names, unused/duplicate imports.
+# Upgrade suggestions (UP*) are not enforced — the code targets 3.9+ on purpose.
+select = ["E4", "E7", "E9", "F"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

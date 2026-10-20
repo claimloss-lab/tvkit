@@ -63,7 +63,7 @@ class CliEndToEnd(unittest.TestCase):
     def test_apply_changes_and_journals(self):
         code, out = self.run_cli(["apply", "--host", "10.0.0.9", "--tier", "safe", "--yes"])
         self.assertEqual(code, 0, out)
-        self.assertIn("Result — OK", out)
+        self.assertIn("Result - OK", out)
         self.assertIn("com.google.android.videos", self.device.disabled)
         journals = list((Path(self.tmp) / "journal").glob("*.json"))
         self.assertEqual(len(journals), 1)

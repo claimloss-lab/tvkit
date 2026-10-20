@@ -18,10 +18,10 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-from . import __version__, discover as discovery, registry, report, safety
+from . import __version__, console, discover as discovery, registry, report, safety
 from .adb import AdbError, Device
 from .apply import apply as apply_plan
-from .apply import latest_journal, make_plan, restore_journal, restore_packages, state_root
+from .apply import latest_journal, make_plan, restore_journal, restore_packages
 from .profiles import ProfileError, default_profile_dir, describe, load_all, select
 from .snapshot import take
 
@@ -68,7 +68,7 @@ def _connect(args) -> Device:
 
 
 def _emit(text: str, args, path: Optional[str] = None) -> None:
-    print(text)
+    console.write(text)
     if path:
         Path(path).expanduser().write_text(text, encoding="utf-8")
         print(f"\nwritten to {path}")
@@ -120,7 +120,7 @@ def cmd_probe(args) -> int:
     if args.json:
         print(report.as_json(snap))
         return 0
-    print(report.snapshot_table(snap))
+    console.write(report.snapshot_table(snap))
     print()
     if profile:
         print(f"Detected profile: {profile.name} — {profile.title}")
@@ -172,7 +172,10 @@ def cmd_plan(args) -> int:
     finally:
         dev.close()
     plan = make_plan(profile, snap, tier=args.tier, include_uninstalled=args.all)
-    print(report.as_json(plan) if args.json else report.plan_report(plan))
+    if args.json:
+        print(report.as_json(plan))
+    else:
+        console.write(report.plan_report(plan))
     return 0
 
 
@@ -191,7 +194,7 @@ def cmd_apply(args) -> int:
             print("\nNothing to disable.")
             return 0
         if not args.yes:
-            print(report.plan_report(plan))
+            console.write(report.plan_report(plan))
             if not sys.stdin.isatty():
                 print("\nRefusing to change the device without --yes.")
                 return 2
@@ -203,7 +206,10 @@ def cmd_apply(args) -> int:
         registry.remember(dev, snap, profile.name)
     finally:
         dev.close()
-    print(report.as_json(result) if args.json else report.result_report(result))
+    if args.json:
+        print(report.as_json(result))
+    else:
+        console.write(report.result_report(result))
     return 0 if result.ok else 3
 
 
@@ -303,7 +309,7 @@ def cmd_profiles(args) -> int:
         problems = [p for p in safety.lint_profile(profile) if "(info)" not in p]
         for problem in problems:
             bad += 1
-            print(f"  ❌ {problem}")
+            console.write(f"  {console.sym(chr(0x274c), '[x]')} {problem}")
         print()
     print(f"{len(profiles)} profile(s) loaded from {DEFAULT_PROFILE_DIR}{' — LINT ERRORS' if bad else ' — lint clean'}")
     return 1 if bad else 0
@@ -402,6 +408,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Optional[list] = None) -> int:
+    console.install()
     parser = build_parser()
     args = parser.parse_args(argv)
     if not getattr(args, "profile_dir", None):
