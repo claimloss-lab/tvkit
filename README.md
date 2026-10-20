@@ -1,5 +1,10 @@
 # tvkit
 
+[![ci](https://github.com/claimloss-lab/tvkit/actions/workflows/ci.yml/badge.svg)](https://github.com/claimloss-lab/tvkit/actions/workflows/ci.yml)
+[![python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
+[![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey)]()
+
 **Debloat, inspect and speed up Android TV / Google TV over ADB — reversibly, and without hard-coding a single device.**
 
 Most Android TV "debloat scripts" you find online are a list of `pm disable-user` lines
