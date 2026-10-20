@@ -1,0 +1,40 @@
+{
+  "name": "xiaomi-mitv",
+  "title": "Xiaomi Mi TV / Mi Box / TV Box S (Android TV & Google TV)",
+  "match": {
+    "ro.product.manufacturer": "xiaomi",
+    "ro.product.brand": "xiaomi|milink|mibox"
+  },
+  "priority": 80,
+  "tiers": {
+    "safe": [
+      "com.google.android.tvrecommendations",
+      "com.google.android.videos",
+      "com.google.android.play.games",
+      "com.google.android.youtube.tvmusic",
+      "com.google.android.backdrop",
+      "com.xiaomi.tv.gallery",
+      "com.mitv.tvhome.michannel",
+      "com.xiaomi.mitv.shop",
+      "com.xiaomi.gamecenter.tv"
+    ],
+    "balanced": [
+      "com.android.vending"
+    ],
+    "aggressive": [
+      "com.google.android.katniss"
+    ]
+  },
+  "keep": [
+    "com.google.android.tvlauncher",
+    "com.google.android.apps.mediashell",
+    "com.google.android.youtube.tv"
+  ],
+  "notes": {
+    "com.mitv.tvhome.michannel": "PatchWall recommendation feed — removing it kills the vendor home tabs",
+    "com.xiaomi.mitv.shop": "Mi store preload"
+  },
+  "verified_on": [
+    "Profile authored from Xiaomi/Google TV package names; not yet field-verified by tvkit"
+  ]
+}

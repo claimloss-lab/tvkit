@@ -1,0 +1,38 @@
+{
+  "name": "hisense-mt",
+  "title": "Hisense / CVTE MediaTek Android TV (Vidaa-adjacent, 4K)",
+  "match": {
+    "ro.product.manufacturer": "hisense|cvte|toshiba",
+    "ro.board.platform": "mt[0-9]"
+  },
+  "priority": 50,
+  "tiers": {
+    "safe": [
+      "com.google.android.tvrecommendations",
+      "com.google.android.videos",
+      "com.google.android.play.games",
+      "com.google.android.youtube.tvmusic"
+    ],
+    "balanced": [
+      "com.android.vending"
+    ],
+    "aggressive": []
+  },
+  "keep": [
+    "com.google.android.apps.mediashell",
+    "com.hisense.tv.*"
+  ],
+  "protected_extra": [
+    "com.hisense.tv.smartsense",
+    "com.vt.tv.smartsense.ui",
+    "com.vt.tv.aiot"
+  ],
+  "notes": {
+    "com.hisense.tv.smartsense": "DO NOT disable — a field report shows a Hisense unit dropping into Android Recovery after this trio was disabled",
+    "com.vt.tv.smartsense.ui": "DO NOT disable — see above",
+    "com.vt.tv.aiot": "DO NOT disable — see above"
+  },
+  "verified_on": [
+    "Only the Google-side packages are verified safe; vendor telemetry is deliberately excluded"
+  ]
+}

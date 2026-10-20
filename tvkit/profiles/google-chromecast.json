@@ -1,0 +1,30 @@
+{
+  "name": "google-chromecast",
+  "title": "Chromecast with Google TV (HD / 4K) and Google TV dongles",
+  "match": {
+    "ro.product.model": "chromecast|google tv",
+    "ro.product.manufacturer": "google"
+  },
+  "priority": 85,
+  "tiers": {
+    "safe": [
+      "com.google.android.tvrecommendations",
+      "com.google.android.videos",
+      "com.google.android.play.games",
+      "com.google.android.youtube.tvmusic"
+    ],
+    "balanced": [],
+    "aggressive": []
+  },
+  "keep": [
+    "com.google.android.apps.mediashell",
+    "com.google.android.tvlauncher",
+    "com.google.android.gms"
+  ],
+  "notes": {
+    "com.android.vending": "excluded on purpose — a dongle with 1.5 GB RAM needs Play Store to install the streaming apps it does not ship with"
+  },
+  "verified_on": [
+    "Not field-verified by tvkit; Google TV dongles are sensitive to launcher changes — never swap Home on these"
+  ]
+}

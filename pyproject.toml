@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tvkit"
+version = "0.1.0"
+description = "Debloat, inspect and speed up Android TV / Google TV over ADB — reversibly, and without hard-coding any device."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "tvkit contributors" }]
+keywords = ["android-tv", "google-tv", "adb", "debloat", "smart-tv", "android"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Utilities",
+]
+dependencies = [
+  "adb-shell>=0.4.4",
+  "rsa",
+  "cryptography",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/OWNER/tvkit"
+Issues = "https://github.com/OWNER/tvkit/issues"
+
+[project.scripts]
+tvkit = "tvkit.cli:main"
+
+[tool.setuptools]
+packages = ["tvkit"]
+
+[tool.setuptools.package-data]
+tvkit = ["profiles/*.json"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

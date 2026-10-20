@@ -1,0 +1,29 @@
+{
+  "name": "operator-box",
+  "title": "ISP / operator Android TV box (AIS Playbox, AISPLAYBOX, SDMC, Amlogic S905X4)",
+  "match": {
+    "ro.product.model": "playbox|aisplaybox|operator",
+    "ro.product.device": "s905x4|aisplaybox|sdmc"
+  },
+  "priority": 90,
+  "tiers": {
+    "safe": [
+      "com.google.android.videos",
+      "com.google.android.play.games",
+      "com.google.android.youtube.tvmusic"
+    ],
+    "balanced": [],
+    "aggressive": []
+  },
+  "keep": [
+    "com.ais.mimo.aisplay.tv",
+    "com.google.android.apps.mediashell",
+    "com.google.android.tvlauncher"
+  ],
+  "notes": {
+    "warning": "Operator boxes are rented hardware. Disabling their apps can break IPTV/on-demand and may breach the service terms — keep changes to the Google extras only, or ask the operator first."
+  },
+  "verified_on": [
+    "Not applied on a live operator box by tvkit; profile is intentionally conservative"
+  ]
+}

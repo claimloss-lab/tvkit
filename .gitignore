@@ -1,0 +1,27 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# tvkit local state (device registry, journals, adb keys) — never commit
+devices.json
+journal/
+keys/
+*.local.json
+
+# reports produced by `tvkit audit --out`
+report*.md
+audit*.md
+!docs/report-example.md
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

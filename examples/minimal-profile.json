@@ -1,0 +1,20 @@
+{
+  "name": "example-minimal",
+  "title": "Bare-minimum example — the five Google packages that are safe almost everywhere",
+  "match": {},
+  "priority": -1,
+  "tiers": {
+    "safe": [
+      "com.google.android.tvrecommendations",
+      "com.google.android.videos",
+      "com.google.android.play.games",
+      "com.google.android.youtube.tvmusic",
+      "com.google.android.backdrop"
+    ],
+    "balanced": [],
+    "aggressive": []
+  },
+  "keep": ["com.google.android.apps.mediashell"],
+  "notes": {},
+  "verified_on": ["not a real device — this file is documentation"]
+}

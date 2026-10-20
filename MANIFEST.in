@@ -1,0 +1,3 @@
+include README.md CONTRIBUTING.md LICENSE
+recursive-include tvkit/profiles *.json
+recursive-include docs *.md

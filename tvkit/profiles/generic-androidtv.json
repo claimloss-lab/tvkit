@@ -1,0 +1,35 @@
+{
+  "name": "generic-androidtv",
+  "title": "Generic Android TV / Google TV — safe baseline for any device",
+  "match": {},
+  "priority": 0,
+  "tiers": {
+    "safe": [
+      "com.google.android.tvrecommendations",
+      "com.google.android.videos",
+      "com.google.android.play.games",
+      "com.google.android.youtube.tvmusic",
+      "com.google.android.backdrop"
+    ],
+    "balanced": [
+      "com.android.vending"
+    ],
+    "aggressive": [
+      "com.google.android.katniss"
+    ]
+  },
+  "keep": [
+    "com.google.android.tvlauncher",
+    "com.google.android.apps.mediashell",
+    "com.google.android.gms"
+  ],
+  "notes": {
+    "com.google.android.tvrecommendations": "the sponsored row on the stock Home screen (often ~100 MB RAM)",
+    "com.google.android.backdrop": "ambient screensaver — no functional loss",
+    "com.android.vending": "Play Store: frees a lot of RAM on 1 GB devices, but you cannot install/update apps until it is re-enabled",
+    "com.google.android.katniss": "Google Assistant: frees ~150-200 MB but the remote's mic and 'Ok Google' stop working"
+  },
+  "verified_on": [
+    "Toshiba TT_Fitness TV / hayward / Android TV 11 (SDK 30)"
+  ]
+}
